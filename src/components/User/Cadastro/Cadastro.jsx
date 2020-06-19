@@ -6,15 +6,21 @@ import UIButton from 'components/UI/Button/Button';
 import './Cadastro.css';
 
 function initialState() {
-  return { user: '', password: '' };
+  return { user: '', password: '', cpf: '', nome: '', sobrenome: '', dt_nasc: '', tel: '', genero_fem: '', genero_masc: '', genero_outros:'' };
 }
 
-function cadastro({ user, password }) {
-  if (user === 'admin' && password === 'admin') {
-    return { token: '1234' };
+function cadastro({ user, password, cpf, nome, sobrenome, dt_nasc, tel, genero_fem, genero_masc, genero_outros }) {
+
+  if (user && password && cpf && nome && sobrenome && dt_nasc && tel && genero_fem && genero_masc && genero_outros === null) {
+    return {token: '1234'};
   }
-  return { error: 'Usuário ou senha inválido' };
-}
+  // return {error: 'Há campos vazios'};
+  }
+  //   if (user === 'admin' && password === 'admin') {
+//     return { token: '1234' };
+//   }
+//   return { error: 'Usuário ou senha inválido' };
+// }
 
 const UserCadastro = () => {
   const [values, setValues] = useState(initialState);
@@ -83,6 +89,7 @@ const UserCadastro = () => {
               name="cpf"
               placeholder="CPF"
               onChange={onChange}
+              value={values.cpf}
               required
             />
           </div>
@@ -94,6 +101,7 @@ const UserCadastro = () => {
               name="nome"
               placeholder="Nome"
               onChange={onChange}
+              value={values.nome}
               required
             />
           </div>
@@ -105,17 +113,19 @@ const UserCadastro = () => {
               name="sobrenome"
               placeholder="Sobrenome"
               onChange={onChange}
+              value={values.sobrenome}
               required
             />
           </div>
           <div className="user-login__form-control">
             
             <input
-              id="dt-nasc"
+              id="dt_nasc"
               type="date"
-              name="dt-nasc"
+              name="dt_nasc"
               placeholder="Data de nascimento"
               onChange={onChange}
+              value={values.dt_nasc}
               required
             />
           </div>
@@ -127,41 +137,42 @@ const UserCadastro = () => {
               name="tel"
               placeholder="Telefone"
               onChange={onChange}
+              value={values.tel}
               required
             />
           </div>
           <p className="text-p-title">Gênero</p>
           <div class="div-radio">
             <div className="user-login__form-control">
-              <label class="label-radio" for="genero-fem">
+              <label class="label-radio" for="genero_fem">
                 <input
-                  id="genero-fem"
+                  id="genero_fem"
                   type="radio"
-                  name="genero-fem"
+                  name="genero_fem"
                   onChange={onChange}
-                
+                  value={values.genero_fem}
                 />Feminino
               </label>
             </div>
             <div className="user-login__form-control">
-              <label class="label-radio" for="genero-masc">
+              <label class="label-radio" for="genero_masc">
                 <input
-                  id="genero-masc"
+                  id="genero_masc"
                   type="radio"
-                  name="genero-masc"
+                  name="genero_masc"
                   onChange={onChange}
-                  
+                  value={values.genero_masc}
                 />Masculino
               </label>
             </div>
             <div className="user-login__form-control">
-              <label class="label-radio" for="genero-outros">
+              <label class="label-radio" for="genero_outros">
                 <input
-                  id="genero-outros"
+                  id="genero_outros"
                   type="radio"
-                  name="genero-outros"
+                  name="genero_outros"
                   onChange={onChange}
-                  
+                  value={values.genero_outros}
                 />Outros
               </label> 
             </div>
